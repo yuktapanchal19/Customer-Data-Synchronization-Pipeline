@@ -1,0 +1,12 @@
+customer_id,name,email,city,signup_date,plan
+101,Alice Johnson,alice@email.com,London,2023-01-10,premium
+102,Bob Smith,bob@email.com,Manchester,2023-03-22,basic
+103,Carol White,carol@email.com,Birmingham,2022-11-05,premium
+104,David Brown,david@email.com,Leeds,2024-01-15,basic
+105,Emma Wilson,emma@email.com,Liverpool,2023-07-18,premium
+106,Frank Harris,frank@email.com,Bristol,2022-09-30,basic
+107,Grace Miller,grace@email.com,Oxford,2024-02-20,premium
+108,Henry Clark,henry@email.com,Cambridge,2023-12-01,basic
+109,Ivy Walker,ivy@email.com,Sheffield,2023-05-11,premium
+110,Jack Turner,jack@email.com,Newcastle,2024-03-01,basic
+110,Jack Turner,jack@email.com,Newcastle,2024-03-01,basic

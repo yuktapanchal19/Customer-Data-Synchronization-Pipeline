@@ -1,0 +1,13 @@
+order_id,product,quantity,unit_price,sale_date,region
+1001,Laptop,2,899.99,2024-03-15,North
+1002,Mouse,5,29.99,2024-03-15,South
+1003,Keyboard,3,79.99,2024-03-15,North
+1004,Monitor,1,349.99,2024-03-15,East
+1005,Printer,2,199.99,2024-03-16,West
+1006,Tablet,4,499.99,2024-03-16,South
+1007,Headphones,6,59.99,2024-03-16,North
+1008,Webcam,3,89.99,2024-03-17,East
+1009,Desk Chair,1,249.99,2024-03-17,West
+1010,USB Drive,10,19.99,2024-03-17,South
+1011,Smartphone,2,699.99,2024-03-18,North
+1012,Router,3,129.99,2024-03-18,East

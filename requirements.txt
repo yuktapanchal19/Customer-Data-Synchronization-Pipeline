@@ -1,0 +1,5 @@
+# Astro Runtime includes the following pre-installed providers packages: 
+apache-airflow-providers-http
+apache-airflow-providers-snowflake
+snowflake-connector-python
+pandas
