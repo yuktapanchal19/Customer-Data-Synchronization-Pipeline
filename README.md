@@ -1,45 +1,99 @@
-Overview
-========
+# Customer Data Synchronization Pipeline
 
-Welcome to Astronomer! This project was generated after you ran 'astro dev init' using the Astronomer CLI. This readme describes the contents of the project, as well as how to run Apache Airflow on your local machine.
+An automated data engineering project using **Apache Airflow, Python, Pandas, and Snowflake** to ingest, transform, validate, and report customer and sales data.
 
-Project Contents
-================
+## 🚀 Overview
 
-Your Astro project contains the following files and folders:
+The project contains two daily Airflow pipelines:
 
-- dags: This folder contains the Python files for your Airflow DAGs. By default, this directory includes one example DAG:
-    - `example_astronauts`: This DAG shows a simple ETL pipeline example that queries the list of astronauts currently in space from the Open Notify API and prints a statement for each astronaut. The DAG uses the TaskFlow API to define tasks in Python, and dynamic task mapping to dynamically print a statement for each astronaut. For more on how this DAG works, see our [Getting started tutorial](https://www.astronomer.io/docs/learn/get-started-with-airflow).
-- Dockerfile: This file contains a versioned Astro Runtime Docker image that provides a differentiated Airflow experience. If you want to execute other commands or overrides at runtime, specify them here.
-- include: This folder contains any additional files that you want to include as part of your project. It is empty by default.
-- packages.txt: Install OS-level packages needed for your project by adding them to this file. It is empty by default.
-- requirements.txt: Install Python packages needed for your project by adding them to this file. It is empty by default.
-- plugins: Add custom or community plugins for your project to this file. It is empty by default.
-- airflow_settings.yaml: Use this local-only file to specify Airflow Connections, Variables, and Pools instead of entering them in the Airflow UI as you develop DAGs in this project.
+* **Customer Pipeline (`customer_sync`)** — Loads customer data, enriches customer records, performs data-quality checks, and generates a summary.
+* **Sales Pipeline (`daily_sales_loader`)** — Loads sales data, creates regional sales summaries, performs validation checks, and generates a sales report.
 
-Deploy Your Project Locally
-===========================
+### Architecture
 
-Start Airflow on your local machine by running 'astro dev start'.
+```text
+CSV Files
+    │
+    ▼
+Apache Airflow
+    │
+    ├── Customer Pipeline ──► Snowflake
+    │                          ├── RAW_CUSTOMERS
+    │                          └── ENRICHED_CUSTOMERS
+    │
+    └── Sales Pipeline ─────► Snowflake
+                               ├── RAW_SALES
+                               └── SALES_SUMMARY
+```
 
-This command will spin up five Docker containers on your machine, each for a different Airflow component:
+## 🛠️ Tech Stack
 
-- Postgres: Airflow's Metadata Database
-- Scheduler: The Airflow component responsible for monitoring and triggering tasks
-- DAG Processor: The Airflow component responsible for parsing DAGs
-- API Server: The Airflow component responsible for serving the Airflow UI and API
-- Triggerer: The Airflow component responsible for triggering deferred tasks
+* Python
+* Apache Airflow
+* Astronomer Runtime
+* Snowflake
+* Pandas
+* SQL
+* Docker
+* Git & GitHub
 
-When all five containers are ready the command will open the browser to the Airflow UI at http://localhost:8080/. You should also be able to access your Postgres Database at 'localhost:5432/postgres' with username 'postgres' and password 'postgres'.
+## 📁 Project Structure
 
-Note: If you already have either of the above ports allocated, you can either [stop your existing Docker containers or change the port](https://www.astronomer.io/docs/astro/cli/troubleshoot-locally#ports-are-not-available-for-my-local-airflow-webserver).
+```text
+├── dags/
+│   ├── customer_pipeline.py
+│   └── sales_pipeline.py
+├── data/
+│   ├── customers_data.csv
+│   └── sales_data.csv
+├── tests/
+├── Dockerfile
+├── requirements.txt
+├── packages.txt
+└── README.md
+```
 
-Deploy Your Project to Astronomer
-=================================
+## ▶️ Run Locally
 
-If you have an Astronomer account, pushing code to a Deployment on Astronomer is simple. For deploying instructions, refer to Astronomer documentation: https://www.astronomer.io/docs/astro/deploy-code/
+Clone the repository:
 
-Contact
-=======
+```bash
+git clone https://github.com/yuktapanchal19/Customer-Data-Synchronization-Pipeline.git
+cd Customer-Data-Synchronization-Pipeline
+```
 
-The Astronomer CLI is maintained with love by the Astronomer team. To report a bug or suggest a change, reach out to our support.
+Start Airflow:
+
+```bash
+astro dev start
+```
+
+Open the Airflow UI:
+
+```text
+http://localhost:8080
+```
+
+Configure the Airflow connection:
+
+```text
+Connection ID: snowflake_default
+```
+
+Then trigger either DAG from the Airflow UI.
+
+## ✅ Key Features
+
+* Automated daily ETL pipelines
+* CSV to Snowflake ingestion
+* Customer data enrichment
+* Regional sales aggregation
+* Data-quality validation
+* Airflow retries and failure handling
+* Docker-based local development
+
+## 👩‍💻 Author
+
+**Yukta Panchal**
+
+Data Engineering | Python | SQL | Airflow | Snowflake
